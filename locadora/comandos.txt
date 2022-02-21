@@ -46,4 +46,9 @@ https://jwt-auth.readthedocs.io/en/develop/laravel-installation/
 php artisan make:model --all nome
 
 
+-----------------------
+php artisan storage:link
+link das imagens para a pasta public
+-------------------------
+
  
