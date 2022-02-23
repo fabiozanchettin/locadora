@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <login-login>merdaaaaaa</login-login>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -24,7 +25,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                       
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
