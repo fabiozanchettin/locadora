@@ -1,11 +1,11 @@
 <template>
     
-   <div id="app" class="container">
+   <div class="container">
        
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Login (vue)</div>
+                <div class="card-header">Login {{x+y+z}}</div>
 
                 <div class="card-body">
                     <form method="POST" action="">
@@ -63,5 +63,13 @@
 </template>
 
 <script>
+export default{
+    props:[
+        'x',
+        'y',
+        'z'
+    ]
+
+}
     
 </script>
