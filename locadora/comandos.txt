@@ -7,6 +7,25 @@ instalando o UI------------------------olhar a aula 339
 3.1 composer require laravel/ui:^3.2.1
 
 criar o esqueleto do projeto com VUE e autenticação nativa
+-----------------------------------------------------
+-----------------------------------------------------
+install vue@next laravel-mix@next
+-----------------------------------------------------
+no arquivo webpack.mix.js fazer:
+mix.js('resources/js/app.js', 'public/js')
+    .vue()
+    .sass('resources/sass/app.scss', 'public/css');
+
+no arquivo app.js fazer:
+import { createApp } from 'vue'
+createApp({
+    components:{
+        LoginLogin,
+    }
+}).mount('#app')
+------------------------------------------------------
+
+
 3.2 php artisan ui vue --auth  
 3.3 npm install
 npm audit fix --force
