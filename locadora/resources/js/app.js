@@ -6,13 +6,13 @@
 
 require('./bootstrap');
 import { createApp } from 'vue'
-import LoginLogin from './components/LoginLogin.vue'
+import LoginComponent from './components/Login.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
 
 createApp({
     components:{
-        LoginLogin,
-        ExampleComponent,
+        LoginComponent,
+        ExampleComponent
     }
 }).mount('#app')
 

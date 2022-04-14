@@ -3,5 +3,5 @@
 @section('content')
     @csrf
     
-    <login-login token_csrf="{{ @csrf_token()}}"></login-login>
+    <login-component token_csrf="{{ @csrf_token()}}"></login-component>
 @endsection
