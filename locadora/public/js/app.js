@@ -19298,10 +19298,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["token_csrf"],
+  props: ['csrf_token'],
+  //data (semelhante)
+  data: function data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
   methods: {
     login: function login(e) {
-      console.log("aqui");
+      var url = 'http://localhost:8000/api/login';
+      var configuracao = {
+        method: 'post',
+        body: new URLSearchParams({
+          'email': this.email,
+          'password': this.password
+        })
+      };
+      fetch(url, configuracao).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        if (data.token) {
+          document.cookie = 'token=' + data.token + ';SameSite=Lax';
+        } //dar sequência no envio do form de autenticação por sessão
+
+
+        e.target.submit();
+      });
     }
   }
 });
@@ -19374,7 +19398,7 @@ var _hoisted_7 = ["value"];
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"form-group row\"><label for=\"email\" class=\"col-md-4 col-form-label text-md-right\">E-Mail</label><div class=\"col-md-6\"><input id=\"email\" type=\"email\" class=\"form-control\" name=\"email\" value=\"\" required autocomplete=\"email\" autofocus></div></div><div class=\"form-group row\"><label for=\"password\" class=\"col-md-4 col-form-label text-md-right\">Senha</label><div class=\"col-md-6\"><input id=\"password\" type=\"password\" class=\"form-control\" name=\"password\" required autocomplete=\"current-password\"></div></div><div class=\"form-group row\"><div class=\"col-md-6 offset-md-4\"><div class=\"form-check\"><input class=\"form-check-input\" type=\"checkbox\" name=\"remember\" id=\"remember\"><label class=\"form-check-label\" for=\"remember\"> Mantenha-me conectado </label></div></div></div><div class=\"form-group row mb-0\"><div class=\"col-md-8 offset-md-4\"><button type=\"submit\" class=\"btn btn-primary\">Login</button><a class=\"btn btn-link\" href=\"#\"> Esqueci a senha </a></div></div>", 4);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.token_csrf) + " ", 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.csrf_token) + "csrf_token ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     method: "POST",
@@ -19385,7 +19409,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "hidden",
     name: "_token",
-    value: $props.token_csrf
+    value: $props.csrf_token
   }, null, 8
   /* PROPS */
   , _hoisted_7), _hoisted_8], 32

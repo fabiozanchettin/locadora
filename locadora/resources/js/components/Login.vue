@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    {{ token_csrf }}
+    {{ csrf_token }}csrf_token
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Login</div>
           <div class="card-body">
             <form method="POST" action="" @submit.prevent="login($event)">
-              <input type="hidden" name="_token" :value="token_csrf" />
+              <input type="hidden" name="_token" :value="csrf_token" />
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right"
                   >E-Mail</label
@@ -80,11 +80,35 @@
 
 <script>
 export default {
-  props: ["token_csrf"],
-  methods: {
-    login(e) {
-      console.log("aqui");
-    },
-  },
-};
+        props: ['csrf_token'], //data (semelhante)
+        data() {
+            return {
+                email: '',
+                password: ''
+            }
+        },
+        methods: {
+            login(e) {
+
+                let url = 'http://localhost:8000/api/login'
+                let configuracao = {
+                    method: 'post',
+                    body: new URLSearchParams({
+                        'email': this.email,
+                        'password': this.password
+                    })
+                }
+
+                fetch(url, configuracao)
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.token) {
+                            document.cookie = 'token='+data.token+';SameSite=Lax'
+                        }
+                        //dar sequência no envio do form de autenticação por sessão
+                        e.target.submit()
+                    })
+            }
+        }
+    }
 </script>
