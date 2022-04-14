@@ -89,7 +89,7 @@
 <script>
 export default {
   
-                  props: ['token_csrf', 'email'], //data (semelhante)
+                  props: ['token_csrf'], //data (semelhante)
                   data() {
                       return {
                           email: '',
@@ -112,11 +112,11 @@ export default {
                               .then(response => response.json())
                               .then(data => {
                                 console.log(data);
-                                // if(data.token) {
-                                    //  document.cookie = 'token='+data.token+';SameSite=Lax'
+                                 if(data.token) {
+                                  document.cookie = 'token='+data.token+';SameSite=Lax'
                                   }
-                                  //dar sequência no envio do form de autenticação por sessão
-                                // e.target.submit()
+                                //dar sequência no envio do form de autenticação por sessão
+                                 e.target.submit()
                               )
                       }
         }
