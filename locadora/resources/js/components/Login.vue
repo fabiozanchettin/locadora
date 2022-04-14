@@ -1,13 +1,19 @@
 <template>
   <div class="container">
-    {{ csrf_token }}csrf_token
+    
+    
+    
     <div class="row justify-content-center">
+    {{ token_csrf }}
+    {{email}}
+    {{password}}
+      ola ola ola 
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Login</div>
           <div class="card-body">
             <form method="POST" action="" @submit.prevent="login($event)">
-              <input type="hidden" name="_token" :value="csrf_token" />
+              <input type="hidden" name="_token" :value="token_csrf" />
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right"
                   >E-Mail</label
@@ -19,10 +25,11 @@
                     type="email"
                     class="form-control"
                     name="email"
-                    value=""
+                    
                     required
                     autocomplete="email"
                     autofocus
+                    v-model="email"
                   />
                 </div>
               </div>
@@ -42,6 +49,7 @@
                     name="password"
                     required
                     autocomplete="current-password"
+                    v-model="password"
                   />
                 </div>
               </div>
@@ -80,35 +88,38 @@
 
 <script>
 export default {
-        props: ['csrf_token'], //data (semelhante)
-        data() {
-            return {
-                email: '',
-                password: ''
-            }
-        },
-        methods: {
-            login(e) {
+  
+                  props: ['token_csrf', 'email'], //data (semelhante)
+                  data() {
+                      return {
+                          email: '',
+                          password: ''
+                      }
+                  },
+                  methods: {
+                      login(e) {
 
-                let url = 'http://localhost:8000/api/login'
-                let configuracao = {
-                    method: 'post',
-                    body: new URLSearchParams({
-                        'email': this.email,
-                        'password': this.password
-                    })
-                }
+                          let url = 'http://localhost:8000/api/login'
+                          let configuracao = {
+                              method: 'post',
+                              body: new URLSearchParams({
+                                  'email': this.email,
+                                  'password': this.password
+                              })
+                          }
 
-                fetch(url, configuracao)
-                    .then(response => response.json())
-                    .then(data => {
-                        if(data.token) {
-                            document.cookie = 'token='+data.token+';SameSite=Lax'
-                        }
-                        //dar sequência no envio do form de autenticação por sessão
-                        e.target.submit()
-                    })
-            }
+                          fetch(url, configuracao)
+                              .then(response => response.json())
+                              .then(data => {
+                                console.log(data);
+                                // if(data.token) {
+                                    //  document.cookie = 'token='+data.token+';SameSite=Lax'
+                                  }
+                                  //dar sequência no envio do form de autenticação por sessão
+                                // e.target.submit()
+                              )
+                      }
         }
-    }
+}
+    
 </script>
