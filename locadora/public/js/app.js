@@ -19298,7 +19298,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['token_csrf', 'email'],
+  props: ['token_csrf'],
   //data (semelhante)
   data: function data() {
     return {
@@ -19319,11 +19319,15 @@ __webpack_require__.r(__webpack_exports__);
       fetch(url, configuracao).then(function (response) {
         return response.json();
       }).then(function (data) {
-        console.log(data); // if(data.token) {
-        //  document.cookie = 'token='+data.token+';SameSite=Lax'
-      } //dar sequência no envio do form de autenticação por sessão
-      // e.target.submit()
-      );
+        console.log(data);
+
+        if (data.token) {
+          document.cookie = 'token=' + data.token + ';SameSite=Lax';
+        } //dar sequência no envio do form de autenticação por sessão
+
+
+        e.target.submit();
+      });
     }
   }
 });

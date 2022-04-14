@@ -117,9 +117,13 @@ export default {
                                   }
                                 //dar sequência no envio do form de autenticação por sessão
                                  e.target.submit()
-                              )
+                              })
+                      
                       }
-        }
+                  }
 }
+        
+                   
+                  
     
 </script>
