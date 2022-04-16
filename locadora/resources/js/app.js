@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+
 import { createApp } from 'vue'
 import LoginComponent from './components/Login.vue'
 import ExampleComponent from './components/ExampleComponent.vue'
